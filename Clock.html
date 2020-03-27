@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Clock with realistic tick!
+		</title>
+	</head>
+	<body>
+		<div class="Clock">
+			<div class="Clock-face">
+				<div class="hand hour-hand"></div>
+				<div class="hand minute-hand"></div>
+				<div class="hand second-hand"></div>
+			</div>
+		</div>
+		<style>
+html{
+	background-image: url("https://images.unsplash.com/photo-1584300789093-877b1718f9dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60");
+	background-size:cover; 
+}
+	body{
+		display:flex;
+		flex:1;
+		align-items:center;
+	}
+	.Clock{
+		width: 30rem;
+		height: 30rem;
+		border: 20px solid white;
+		border-radius: 50%;
+		margin: 50px auto;
+		position: relative;
+		padding: 2rem;
+		box-shadow:
+			0 0 0 4px rgba(0,0,0,0.1),
+		inset 0 0 0 3px #EFEFEF,
+		inset 0 0 10px black,
+		0 0 10px rgba(0,0,0,0.2);
+	}
+	.Clock-face{
+		position:relative;
+		width: 100%;
+		height: 100%;
+	}
+	.hand{
+		width: 50%;
+		height: 6px;
+		background: red;
+		position: absolute;
+		top: 50%;
+		transform-origin:100%;
+		transform:rotate(90deg);
+		transition:all 0.05s;
+		transition-timing-function:ease-in-out;
+		}
+	.second-hand{
+		background: blue;
+	}
+	.minute-hand{
+		background: yellow;	
+	}
+		</style>
+<script>
+	const secondHand=document.querySelector('.second-hand');
+	const minutehand=document.querySelector('.minute-hand');
+	const hourHand=document.querySelector('.hour-hand');
+	function setDate(){
+		var x=new Date();
+		var sdegree=((x.getSeconds()/60)*360)+90;
+		secondHand.style.transform=`rotate(${sdegree}deg)`;
+		const mins=x.getMinutes();
+		var mdegree=((mins/60)*360)+90;
+		minutehand.style.transform=`rotate(${mdegree}deg)`;
+		//console.log(mins);
+		const hours=x.getHours()%12;
+		var hdegree=(hours*30)+90;
+		console.log(hdegree);
+		hourHand.style.transform=`rotate(${hdegree}deg)`;
+			
+	}
+	setInterval(setDate,1000);
+</script>
+	</body>
+</html>

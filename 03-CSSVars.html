@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<style>
+:root{
+	--Spacing:5px;
+	--base:#ffc600;
+	--Blur:10px;
+}
+img{
+	padding:var(--Spacing);
+	background:var(--base);
+	filter:blur(var(--Blur));
+}
+body{
+	text-align:center;
+	background:#193549;
+	color:white;
+	font-weight:100;
+	font-size:50px;
+}
+.jjs{
+	color:var(--base);
+}
+</style>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			CSSVars
+		</title>
+	</head>
+	<body>
+		<div class="Start">
+			<h2> Update CSS Variables with<span class="jjs"> JS</span></h2>
+		</div>
+		<div class="ranges">
+			<label>Spacing:</label>
+			<input type="range" id="Spacing" name="Spacing" min="10" max="200" value="10" data-sizing="px">
+			<label> Blur</label>
+			<input type="range" id="Blur" name="Blur" min="0" max="25" value="10" data-sizing="px">
+			<label>Base Color</label>
+			<input id="base" type="color" name="base" value="#ffc600">
+		</div>
+		<img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+		<script>
+			const inputs=document.querySelectorAll(".ranges input");
+//const inputs = document.querySelectorAll('.controls input');
+function handleUpdate(){
+	const point=this.dataset.sizing||'';
+	document.documentElement.style.setProperty(`--${this.name}`,this.value+point);}
+inputs.forEach(ip=>ip.addEventListener('change',handleUpdate));
+inputs.forEach(ip=>ip.addEventListener('mousemove',handleUpdate));
+		</script>
+	</body>
+</html>
+
